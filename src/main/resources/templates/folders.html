@@ -1,0 +1,96 @@
+{#include layout}
+    {#insert moreHeadings}
+        <!-- Font Awesome Icons -->
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    {/insert}
+
+    <main class="min-h-screen py-10 px-4 max-w-7xl mx-auto">
+        
+        <!-- Breadcrumbs & Title Section -->
+        <div class="mb-10 fragment">
+            {! <nav class="flex items-center gap-2 text-sm text-slate-500 mb-4">
+                <a href="/college/cs" class="hover:text-primary transition-colors">كلية الحاسبات</a>
+                <i class="fa-solid fa-chevron-left text-[10px]"></i>
+                <a href="/college/cs/year/2" class="hover:text-primary transition-colors">السنة الثانية</a>
+                <i class="fa-solid fa-chevron-left text-[10px]"></i>
+                <span class="text-slate-800 font-bold">مادة التشفير (Cryptography)</span>
+            </nav> !}
+            
+            <h1 class="text-3xl font-black text-slate-900 flex items-center gap-3">
+                <span class="p-3 bg-primary/10 rounded-2xl text-primary"><i class="fa-solid fa-database"></i></span>
+               المجلد : {folder.name}
+            </h1>
+
+            
+        </div>
+
+        <!-- 1. الملفات المتاحة (File List Items) 📄 -->
+        <section class="mb-16 fragment">
+            <div class="flex items-center justify-between mb-6">
+                <h2 class="text-xl font-bold text-slate-800 flex items-center gap-2">
+                    <i class="fa-solid fa-file-arrow-down text-emerald-500"></i> الملفات المرفوعة
+                </h2>
+                <div class="flex gap-2">
+                    <button class="p-2 bg-white border border-slate-200 rounded-lg text-slate-400 hover:text-primary transition-colors"><i class="fa-solid fa-filter"></i></button>
+                    <button class="p-2 bg-white border border-slate-200 rounded-lg text-slate-400 hover:text-primary transition-colors"><i class="fa-solid fa-sort"></i></button>
+                </div>
+            </div>
+
+            <!-- قائمة الملفات (Desktop View Table-like items) -->
+            <div class="space-y-4">
+                
+                <!-- File Rectangle Item 1 --> 
+                {#for file in files}  
+                <div class="card-hover bg-white p-4 rounded-[1.8rem] border border-slate-100 shadow-sm flex flex-col lg:flex-row items-center gap-4 lg:gap-8 group">
+                    <!-- Basic Info & Type Icon -->
+                    <div class="flex items-center gap-4 flex-1 w-full lg:w-auto">
+                        <div class="w-14 h-14 bg-rose-50 text-rose-500 rounded-2xl flex items-center justify-center flex-shrink-0">
+                            <i class="fa-solid fa-file-pdf text-2xl"></i>
+                        </div>
+                        <div class="min-w-0">
+                            <h3 class="font-bold text-slate-800 truncate group-hover:text-primary transition-colors">{file.name}</h3>
+                            <div class="flex items-center gap-3 mt-1">
+                                <span class="text-xs font-medium text-slate-400 flex items-center gap-1">
+                                    <i class="fa-solid fa-user-circle"></i> {file.createdBy.name}
+                                </span>
+                                <span class="badge bg-slate-100 text-slate-500 font-bold uppercase tracking-widest" style="font-size: 0.6rem;">{file.category.name}</span>
+                                <span class="text-xs text-slate-400 flex items-center gap-1"><i class="fa-solid fa-weight-hanging text-[10px]"></i> {file.size} MB</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Stats Bar -->
+                    <div class="flex items-center justify-around w-full lg:w-auto lg:px-8 lg:border-x border-slate-100 py-3 lg:py-0">
+                        <div class="text-center px-4">
+                            <p class="text-[10px] text-slate-400 uppercase font-bold tracking-tighter">المشاهدات</p>
+                            <p class="font-bold text-slate-700">soon...</p> 
+                        </div>
+                        <div class="text-center px-4">
+                            <p class="text-[10px] text-slate-400 uppercase font-bold tracking-tighter">التحميلات</p>
+                            <p class="font-bold text-slate-700">soon...</p>
+                        </div>
+                    </div>
+
+                    <!-- Action Buttons -->
+                    <div class="flex items-center gap-2 w-full lg:w-auto">
+                        <a href="{config:['public.url']}/{file.url}" 
+                            class="btn-press flex-1 lg:flex-none px-6 py-2.5 bg-blue-50 text-blue-600 text-xs font-semibold hover:bg-blue-100 transition-all">
+                            فتح 
+                        </a>
+                        <a download href="{config:['public.url']}/{file.url}" class="btn-press flex-1 lg:flex-none px-6 py-2.5 bg-primary text-white rounded-xl text-sm font-bold hover:bg-primary/90 transition-all flex items-center justify-center gap-2 shadow-sm">
+                            <i class="fa-solid fa-download text-xs"></i> تحميل
+                        </a>
+                       
+                    </div>
+                </div> 
+
+                {/for}
+            </div>
+        </section>
+
+        <hr class="custom-hr fragment">
+
+
+
+    </main>
+{/include}

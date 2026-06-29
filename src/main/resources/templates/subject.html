@@ -1,0 +1,81 @@
+{#include layout}
+    {#insert moreHeadings}
+        <!-- Font Awesome Icons -->
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    {/insert}
+
+    <main class="min-h-screen py-12 px-4 max-w-7xl mx-auto">
+        
+        
+        <div class="mb-12 fragment">
+            <nav id="path" class="flex items-center gap-2 text-sm text-slate-500 mb-4">
+
+            </nav>
+            
+            <div class="flex flex-col md:flex-row justify-between items-start md:items-center gap-6">
+                <div>
+                    <h1 class="text-3xl md:text-4xl font-black text-slate-900 mb-2">فئات {subject.name} 🎓</h1>
+                    <p class="text-slate-500 max-w-2xl">اختر الفئة المطلوبة للوصول إلى المواد الدراسية.</p>
+                </div>
+                
+                <!-- <a href="/college/cs" 
+                   class="btn-press flex items-center gap-2 px-5 py-2.5 bg-white border border-slate-200 text-slate-700 rounded-xl font-bold hover:bg-slate-50 transition-all">
+                    <i class="fa-solid fa-arrow-right"></i>
+                    العودة للسنوات
+                </a> -->
+
+            </div>
+        </div>
+
+        <!-- Specializations Grid  -->
+        <div id="dynamic-content" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            
+           
+             {#for category in categories}
+            <div class="card-hover bg-white rounded-[2rem] p-8 border border-slate-100 shadow-sm relative overflow-hidden group fragment">
+                <!-- Decorative element -->
+                <div class="absolute top-0 left-0 w-2 h-full bg-primary transition-all group-hover:w-3"></div>
+                
+                <div class="flex justify-between items-start mb-6">
+                    <div class="w-14 h-14 bg-primary/10 rounded-2xl flex items-center justify-center text-primary group-hover:scale-110 transition-transform">
+                        <i class="fa-solid fa-laptop-code text-3xl"></i>
+                    </div>
+                </div>
+
+                <h3 class="text-2xl font-bold text-slate-800 mb-3">{category.name}</h3>
+                <p class="text-slate-500 text-sm leading-relaxed mb-8"> 
+                    {category.description}
+                </p>
+
+                <div class="space-y-3">
+                    <div class="flex items-center gap-3 text-xs text-slate-400 mb-4">
+                        <span class="flex items-center gap-1"><i class="fa-solid fa-file-pdf"></i> عدد الملفات {category.files.size} </span>
+                        <span class="flex items-center gap-1"><i class="fa-solid fa-folder"></i>المجلدات {category.folders.size} </span>
+                    </div>
+                     
+                    <a href="/{pathObj.collegeCode}/years/{pathObj.yearId}/specializations/{pathObj.specializationId}/subjects/{pathObj.subjectId}/categories/{category.id}/resources" 
+                       class="btn-press w-full py-4 bg-slate-900 text-white rounded-2xl font-bold hover:bg-primary transition-all flex items-center justify-center gap-3 group/btn">
+                        استعرض الموارد المتاحة
+                        <i class="fa-solid fa-chevron-left text-xs transform group-hover/btn:-translate-x-1 transition-transform"></i>
+                    </a>
+                </div>
+            </div>
+            {/for}
+
+        </div>
+
+        <!-- Section: مساعدة الطلاب 💡 -->
+        <div class="mt-20 p-8 bg-gradient-to-br from-primary/5 to-secondary/5 rounded-[2.5rem] border border-primary/10 flex flex-col md:flex-row items-center gap-8 fragment">
+            <div class="w-20 h-20 bg-white rounded-3xl shadow-sm flex items-center justify-center text-primary text-3xl">
+                <i class="fa-solid fa-lightbulb"></i>
+            </div>
+            <div class="flex-1 text-center md:text-right">
+                <h4 class="text-xl font-bold text-slate-800 mb-1">هل تحتاج لمساعدة في اختيار تخصصك؟</h4>
+                <p class="text-slate-500 text-sm">يمكنك مراجعة وصف كل تخصص أو التواصل مع قادة الدفعة في السيكشن العلوي للحصول على نصيحة.</p>
+            </div>
+            <button class="btn-press px-8 py-3 bg-white text-primary border border-primary/20 rounded-2xl font-bold hover:bg-primary hover:text-white transition-all">
+                اقرأ المزيد
+            </button>
+        </div>
+    </main>
+{/include}

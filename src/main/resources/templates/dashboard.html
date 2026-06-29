@@ -1,0 +1,151 @@
+{#include layout}
+{#moreHeadings}
+
+    <!-- CSS --> 
+     <script src="https://unpkg.com/htmx.org/dist/ext/json-enc.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/simple-datatables@latest/dist/style.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <script src="https://unpkg.com/htmx.org/dist/htmx.min.js"></script>
+
+
+    <style>
+        .sidebar-link.active {
+            background-color: rgb(241 245 249);
+            color: var(--primary-color);
+            border-right: 4px solid var(--primary-color);
+        }
+
+        .glass-panel {
+            background: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        table.dataTable {
+            border-collapse: collapse !important;
+        } 
+
+        .dataTables_wrapper .dataTables_length select,
+        .dataTables_wrapper .dataTables_filter input {
+            @apply bg-white border border-gray-300 rounded-lg px-3 py-2 text-sm;
+        }
+    </style>
+
+{/moreHeadings}
+
+    <div class="flex min-h-screen bg-slate-50">
+        
+        <!-- Sidebar - الـ Sidebar الجانبي -->
+        <aside class="w-72 bg-white border-l border-slate-200 hidden lg:flex flex-col sticky top-0 h-screen">
+            <div class="p-8">
+                <div class="flex items-center gap-3 text-primary font-black text-2xl mb-10">
+                    <div class="w-10 h-10 bg-primary rounded-xl flex items-center justify-center text-white text-xl shadow-lg shadow-primary/20">
+                        <i class="fa-solid fa-gauge-high"></i>
+                    </div>
+                    <span>لوحة التحكم</span>
+                </div>
+
+                <nav class="space-y-2">
+                    <p class="text-[10px] uppercase font-bold text-slate-400 px-4 mb-4 tracking-widest">الإدارة الأكاديمية</p>
+                
+                    <button hx-get="/dashboard/defaultView" hx-target="#main-scene" hx-swap="outerHTML"   
+                            class="sidebar-link active w-full flex items-center gap-3 px-4 py-3.5 rounded-xl font-bold text-slate-600 hover:bg-slate-50 transition-all">
+                        <i class="fa-solid fa-house w-5 text-center"></i>
+                        الرئيسية
+                    </button>
+
+                    <button hx-get="/dashboard/years/yearsView" hx-target="#main-scene" hx-swap="outerHTML"   
+                            class="sidebar-link  w-full flex items-center gap-3 px-4 py-3.5 rounded-xl font-bold text-slate-600 hover:bg-slate-50 transition-all">
+                        <i class="fa-solid fa-calendar-days w-5 text-center"></i>
+                        إدارة السنوات
+                    </button>
+
+                    <button hx-get="/dashboard/specializations/specializationsView" hx-target="#main-scene" hx-swap="outerHTML" 
+                            class="sidebar-link w-full flex items-center gap-3 px-4 py-3.5 rounded-xl font-bold text-slate-600 hover:bg-slate-50 transition-all">
+                        <i class="fa-solid fa-layer-group w-5 text-center"></i>
+                        إدارة التخصصات
+                    </button>
+
+                    <button hx-get="/dashboard/subjects/subjectsView" hx-target="#main-scene" hx-swap="outerHTML" 
+                            class="sidebar-link w-full flex items-center gap-3 px-4 py-3.5 rounded-xl font-bold text-slate-600 hover:bg-slate-50 transition-all">
+                        <i class="fa-solid fa-book w-5 text-center"></i>
+                        إدارة المواد
+                    </button> 
+
+                    <button hx-get="/dashboard/categories/categoriesView" hx-target="#main-scene" hx-swap="outerHTML" 
+                            class="sidebar-link w-full flex items-center gap-3 px-4 py-3.5 rounded-xl font-bold text-slate-600 hover:bg-slate-50 transition-all">
+                            <i class="fa-solid fa-tags w-5 text-center"></i>
+                        إدارة الفئات
+                    </button>
+
+                    <button hx-get="/dashboard/files/filesView" hx-target="#main-scene" hx-swap="outerHTML" 
+                            class="sidebar-link w-full flex items-center gap-3 px-4 py-3.5 rounded-xl font-bold text-slate-600 hover:bg-slate-50 transition-all">
+                        <i class="fa-solid fa-file-lines w-5 text-center"></i>
+                        إدارة المجلدات والملفات
+                    </button> 
+
+                    <div class="pt-6">
+                        <p class="text-[10px] uppercase font-bold text-slate-400 px-4 mb-4 tracking-widest">المستخدمين والتقارير</p>
+                        <button class="sidebar-link w-full flex items-center gap-3 px-4 py-3.5 rounded-xl font-bold text-slate-600 hover:bg-slate-50 transition-all">
+                            <i class="fa-solid fa-users w-5 text-center"></i>
+                            الطلاب والقادة
+                        </button>
+                        <button class="sidebar-link w-full flex items-center gap-3 px-4 py-3.5 rounded-xl font-bold text-slate-600 hover:bg-slate-50 transition-all">
+                            <i class="fa-solid fa-chart-line w-5 text-center"></i>
+                            الإحصائيات
+                        </button>
+                    </div>
+                </nav>
+            </div>
+
+            <div class="mt-auto p-8 border-t border-slate-100">
+                <a href="/" class="flex items-center gap-3 px-4 py-3 rounded-xl font-bold text-rose-500 hover:bg-rose-50 transition-all">
+                    <i class="fa-solid fa-right-from-bracket"></i>
+                    خروج للموقع
+                </a>
+            </div>
+        </aside>
+
+        <!-- Main Content Area - منطقة المشهد المتغير -->
+        <main id="main-scene" class="flex-1 p-6 md:p-12 overflow-y-auto relative" hx-get="/dashboard/defaultView" hx-trigger="load"  hx-swap="outerHTML" hx-target="#main-scene">
+            
+            <!-- Default Scene: Years Management - مشهد إدارة السنوات -->
+
+
+            <!-- Add Year Modal - نافذة إضافة سنة (Hidden by default) -->
+
+
+        </main> 
+
+
+ 
+ 
+            
+
+    </div> 
+
+    <script> 
+
+
+
+        // remove highlight from sidebar-link onclick and on load
+        const sidebarLinks = document.querySelectorAll('.sidebar-link');
+
+        sidebarLinks.forEach(link => {
+            link.addEventListener('click', () => {
+
+                sidebarLinks.forEach(link => {
+                    link.classList.remove('active');
+                }); 
+                
+                link.classList.add('active');
+            });
+        }); 
+
+    </script> 
+
+ <script>
+
+
+</script>
+{/include}

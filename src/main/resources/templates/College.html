@@ -1,0 +1,113 @@
+{#include layout}
+{#insert moreHeadings}
+<!-- Font Awesome Icons -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+{/insert}
+
+<main class="min-h-screen">
+
+    <!-- 1. Hero Section 🖼️ -->
+    <section class="relative h-[450px] flex items-center justify-center overflow-hidden">
+        <!-- Background Image with Overlay -->
+        <div class="absolute inset-0 z-0">
+            <img src="https://png.pngtree.com/background/20250102/original/pngtree-technology-and-digital-circuit-blue-computer-motherboard-abstract-hardware-science-background-picture-image_15825065.jpg?q=80&w=1470&auto=format&fit=crop"
+                 class="w-full h-full object-cover" alt="College Background">
+            <div class="absolute inset-0 bg-slate-900/60 backdrop-blur-[2px]"></div>
+        </div>
+
+        <!-- Hero Content -->
+        <div class="relative z-10 text-center px-4 fragment">
+            <h1 class="text-4xl md:text-6xl font-black text-white mb-4 drop-shadow-lg">
+                كلية الحاسبات والذكاء الاصطناعي
+            </h1>
+            <p class="text-lg md:text-xl text-slate-200 max-w-2xl mx-auto font-light">
+                مرحباً بكم في منصة المواد الدراسية - وجهتكم الأولى للوصول إلى المحاضرات، الملخصات، والمصادر البرمجية.
+            </p>
+            <div class="mt-8 flex gap-4 justify-center">
+                <a href="#years" class="btn-press px-8 py-3 bg-primary text-white rounded-2xl font-bold hover:shadow-lg hover:shadow-primary/30 transition-all">
+                    تصفح السنوات <i class="fa-solid fa-arrow-down-long mr-2"></i>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- 2. Banner Info Bar 📊 -->
+    <section class="relative z-20 -mt-10 px-4">
+        <div class="max-w-6xl mx-auto bg-white rounded-3xl shadow-xl shadow-slate-200/50 p-6 md:p-8 border border-slate-100 fragment">
+            <div class="grid center grid-cols-2 md:grid-cols-4 gap-6 text-center">
+                <div class="space-y-1">
+                    <div class="text-primary text-2xl mb-1">  <i class="fa-solid fa-arrows-split-up-and-left"></i>  </div>
+                    <p class="text-2xl font-bold text-slate-800">{BranchedspecializationsCount}</p>
+                    <p class="text-xs text-slate-500 uppercase tracking-wider">تخصصات متفرعه</p>
+                </div>
+                <div class="space-y-1"> 
+                 
+                    <div class="text-sky-500 text-2xl mb-1"> <i class="fa-solid fa-cubes"></i>  </div>
+                    <p class="text-2xl font-bold text-slate-800">{ComprehensiveSpecializationsCount}</p>
+                    <p class="text-xs text-slate-500 uppercase tracking-wider">تخصصات جامعة</p>
+                </div>
+                <div class="space-y-1">
+                    <div class="text-emerald-500 text-2xl mb-1"><i class="fa-solid fa-file-lines"></i></div>
+                    <p class="text-2xl font-bold text-slate-800">----</p>
+                    <p class="text-xs text-slate-500 uppercase tracking-wider">ملف دراسي</p>
+                </div>
+                <div class="space-y-1">
+                    <div class="text-amber-500 text-2xl mb-1"><i class="fa-solid fa-users"></i></div>
+                    <p class="text-2xl font-bold text-slate-800">----</p>
+                    <p class="text-xs text-slate-500 uppercase tracking-wider">طالب مسجل</p>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+
+
+
+    <hr class="custom-hr fragment">
+
+
+
+
+
+
+
+    <section id="years" class="py-16 px-4 max-w-7xl mx-auto mb-20 fragment-swap">
+
+        <div id="specs" >
+
+        <div class="flex items-center gap-3 mb-6">
+            <div class="w-1 h-8 bg-primary rounded-full"></div>
+            <div>
+                <h2 class="text-2xl font-bold text-slate-800">السنوات المتاحة</h2>
+                <p class="text-sm text-slate-400 mt-1">اختر سنتك الدراسية</p>
+            </div>
+        </div>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
+
+            {#for year in college_Years}
+            <div class="card-hover bg-white rounded-2xl overflow-hidden border border-slate-100 image-card">
+                <div class="relative h-40 overflow-hidden">
+                    <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=600&h=300&fit=crop" alt="حاسوب" class="w-full h-full object-cover">
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent"></div>
+                </div>
+                <div class="p-5">
+                    <h3 class="text-lg font-bold text-slate-800 mb-1">{year.name}</h3>
+                    <p class="text-sm text-slate-500 mb-4">{year.description}</p>
+                    <button  onclick="window.location.href = '/{college.collegeCode}/years/{year.id}/specializations' " class="btn-press w-full py-2.5 bg-emerald-500 text-white rounded-xl text-sm font-semibold hover:bg-emerald-600 transition">
+                        تصفح التخصص
+                    </button>
+                </div>
+
+            </div>
+
+<!--  -->
+            {/for}
+
+        </div>
+    </div>
+    </section>
+
+</main>
+{/include}

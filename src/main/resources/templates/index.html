@@ -1,0 +1,230 @@
+{#include 'layout.html'}
+
+<body class="bg-slate-50 text-slate-800">
+
+    <main class="max-w-7xl mx-auto px-6 py-16">
+
+        <!-- Header Section -->
+        <header class="text-center mb-12">
+            <h1 class="text-4xl md:text-5xl font-extrabold text-slate-900 mb-4 tracking-tight leading-tight">
+                <span class="text-transparent bg-clip-text bg-gradient-to-r from-primary to-secondary">Material
+                    Hub</span>
+                <span class="block mt-2 text-2xl md:text-3xl font-bold text-slate-600">
+                    منصتك الذكية للوصول إلى المحتوى التعليمي والمواد الدراسية بكل سهولة
+                </span>
+            </h1>
+            <p class="text-lg md:text-xl text-slate-500 max-w-3xl mx-auto mb-10 leading-relaxed">
+                استعرض، حمّل، وشارك المواد الدراسية المنظمة حسب كليتك، وقسمك، ومساقك الأكاديمي.
+            </p>
+
+            <div class="flex flex-col sm:flex-row items-center justify-center gap-4">
+                <button
+                    class="btn-press w-full sm:w-auto px-8 py-3 bg-primary text-white rounded-xl text-lg font-semibold hover:bg-indigo-600 shadow-lg shadow-indigo-200">
+                    ابدأ الآن
+                </button>
+                <button
+                    class="btn-press w-full sm:w-auto px-8 py-3 bg-white text-slate-700 border border-slate-200 rounded-xl text-lg font-semibold hover:bg-slate-50 hover:border-slate-300">
+                    تصفح الكليات
+                </button>
+            </div>
+        </header>
+
+        <hr class="border-slate-200 my-16">
+
+        <!-- College Selection Section -->
+        <section id="years" class="mb-12" > 
+            
+            <div class="text-center mb-10">
+                <h2 class="text-3xl font-bold text-slate-800 mb-3">اختر كليتك وابدأ رحلتك التعليمية</h2>
+                <p class="text-slate-500 text-lg">جميع الكليات المتاحة على المنصة مع إمكانية الوصول السريع إلى المواد.
+                </p>
+            </div>
+
+
+            <div id="specs-container" class="fragment">
+
+                <div class="fragemntContainer" >
+
+                    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
+
+                        {#for college in collegeList}
+                        <div class="card-hover bg-white rounded-2xl overflow-hidden border border-slate-100 image-card">
+                            <div class="relative h-40 overflow-hidden">
+                                <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=600&h=300&fit=crop"
+                                    alt="حاسوب" class="w-full h-full object-cover">
+                                <div class="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent"></div>
+                                <span
+                                    class="absolute top-3 left-3 badge bg-emerald-500 text-white">{college.collegeCode}</span>
+                            </div>
+                            <div class="p-5">
+                                <h3 class="text-lg font-bold text-slate-800 mb-1">{college.collegeName}</h3>
+                                <p class="text-sm text-slate-500 mb-4">{college.collegeDescription}</p>
+                                <button onclick="window.location.href = '/{college.collegeCode}'  "
+                                    class="btn-press w-full py-2.5 bg-emerald-500 text-white rounded-xl text-sm font-semibold hover:bg-emerald-600 transition">
+                                    تصفح التخصص
+                                </button>
+                            </div>
+                        </div>
+                        {/for}
+
+                    </div>
+
+                </div>
+
+            </div>
+        </section> 
+
+
+        <section id="about" class="fragment mb-24">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+                <!-- الجانب النصي -->
+                <div class="space-y-6">
+                    <div class="inline-flex items-center gap-2 bg-indigo-50 text-primary border border-indigo-100 px-4 py-1.5 rounded-full text-sm font-semibold">
+                        <i class="fa-solid fa-circle-info"></i>
+                        <span>من نحن؟</span>
+                    </div>
+                    <h2 class="text-3xl md:text-4xl font-black text-slate-900 leading-tight">
+                        مستودع رقمي ذكي <br>
+                        <span class="gradient-text">يجمع الطلاب بشغف المعرفة</span>
+                    </h2>
+                    <p class="text-slate-600 leading-relaxed text-base md:text-lg">
+                        منصة <strong>Material Hub</strong> هي مساحتك الأكاديمية التشاركية المصممة لتبسيط رحلتك الجامعية. هدفنا هو القضاء على عشوائية البحث عن المحاضرات، الملخصات، والمصادر التعليمية عبر تجميعها وتقديمها في قالب منظم، ذكي، وسهل الوصول.
+                    </p>
+                    
+                    <!-- مميزات سريعة على شكل كروت صغيرة -->
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-2">
+                        <div class="flex gap-3 items-start bg-white p-4 rounded-xl border border-slate-100 shadow-sm">
+                            <div class="w-10 h-10 bg-emerald-50 text-emerald-500 rounded-lg flex items-center justify-center shrink-0">
+                                <i class="fa-solid fa-folder-open text-lg"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-slate-800 text-sm mb-0.5">تنظيم هيكلي ذكي</h4>
+                                <p class="text-xs text-slate-500">ملفات مرتبة حسب الكلية، التخصص، والمادة الدراسية.</p>
+                            </div>
+                        </div>
+
+                        <div class="flex gap-3 items-start bg-white p-4 rounded-xl border border-slate-100 shadow-sm">
+                            <div class="w-10 h-10 bg-indigo-50 text-primary rounded-lg flex items-center justify-center shrink-0">
+                                <i class="fa-solid fa-users-gear text-lg"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-slate-800 text-sm mb-0.5">روح تشاركية</h4>
+                                <p class="text-xs text-slate-500">منصة قائمة على مشاركة الطلاب لملفاتهم وتحديثها باستمرار.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- الجانب البصري والجميل -->
+                <div class="relative flex justify-center items-center">
+                    <!-- خلفية هندسية وجمالية للزينة -->
+                    <div class="absolute -inset-4 bg-gradient-to-tr from-primary/10 to-secondary/10 rounded-3xl blur-2xl z-0"></div>
+                    
+                    <!-- كرت الإحصائيات أو الصورة التعبيرية -->
+                    <div class="relative z-10 bg-gradient-to-br from-slate-900 to-slate-800 p-8 rounded-3xl text-white shadow-xl shadow-slate-900/10 w-full max-w-md border border-slate-700/50">
+                        <div class="flex justify-between items-center mb-8">
+                            <span class="text-xs uppercase font-bold tracking-wider text-accent">المجتمع الأكاديمي</span>
+                            <div class="w-2 h-2 rounded-full bg-emerald-400 animate-ping"></div>
+                        </div>
+                        
+                        <div class="space-y-6">
+                            <div>
+                                <div class="flex justify-between text-xs mb-1">
+                                    <span class="text-slate-400">تنظيم وهيكلة الملفات</span>
+                                    <span class="font-bold text-emerald-400">100%</span>
+                                </div>
+                                <div class="progress-bar"><div class="fill" style="width: 100%"></div></div>
+                            </div>
+
+                            <div class="grid grid-cols-2 gap-4 pt-4 border-t border-slate-700/50">
+                                <div>
+                                    <span class="block text-2xl font-black text-white">20K+</span>
+                                    <span class="text-xs text-slate-400">ملف ومحاضرة</span>
+                                </div>
+                                <div>
+                                    <span class="block text-2xl font-black text-white">5K+</span>
+                                    <span class="text-xs text-slate-400">طالب نشط</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section> 
+
+
+        <section id="contact" class="fragment mb-12">
+            <div class="max-w-4xl mx-auto">
+                <div class="text-center mb-10 space-y-2">
+                    <div class="inline-flex items-center gap-2 bg-emerald-50 text-emerald-600 border border-emerald-100 px-4 py-1.5 rounded-full text-sm font-semibold">
+                        <i class="fa-solid fa-envelope"></i>
+                        <span>الدعم الأكاديمي والتقني</span>
+                    </div>
+                    <h2 class="text-3xl font-bold text-slate-800">هل لديك استفسار أو تود المساهمة؟</h2>
+                    <p class="text-slate-500 text-base max-w-xl mx-auto">
+                        سواء كنت تواجه مشكلة تقنية، أو تريد إضافة كليتك للمنصة، تواصل معنا وسنرد عليك في أسرع وقت.
+                    </p>
+                </div>
+
+                <!-- كرت الفورم المطور -->
+                <div class="bg-white rounded-2xl border border-slate-100 p-8 shadow-sm">
+                    <form class="space-y-6">
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                            <!-- الاسم -->
+                            <div class="space-y-2">
+                                <label class="block text-sm font-semibold text-slate-700" for="name">الاسم بالكامل</label>
+                                <div class="relative">
+                                    <span class="absolute inset-y-0 right-0 pr-4 flex items-center text-slate-400 pointer-events-none">
+                                        <i class="fa-regular fa-user"></i>
+                                    </span>
+                                    <input class="w-full bg-slate-50 border border-slate-200 rounded-xl py-3 pr-11 pl-4 text-sm text-slate-800 focus:outline-none focus:border-primary focus:bg-white transition-all" 
+                                           type="text" id="name" placeholder="عمر عادل" required>
+                                </div>
+                            </div>
+
+                            <!-- البريد الإلكتروني -->
+                            <div class="space-y-2">
+                                <label class="block text-sm font-semibold text-slate-700" for="email">البريد الإلكتروني</label>
+                                <div class="relative">
+                                    <span class="absolute inset-y-0 right-0 pr-4 flex items-center text-slate-400 pointer-events-none">
+                                        <i class="fa-regular fa-envelope"></i>
+                                    </span>
+                                    <input class="w-full bg-slate-50 border border-slate-200 rounded-xl py-3 pr-11 pl-4 text-sm text-slate-800 focus:outline-none focus:border-primary focus:bg-white transition-all" 
+                                           type="email" id="email" placeholder="name@example.com" required>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- الموضوع -->
+                        <div class="space-y-2">
+                            <label class="block text-sm font-semibold text-slate-700" for="subject">الموضوع</label>
+                            <div class="relative">
+                                <span class="absolute inset-y-0 right-0 pr-4 flex items-center text-slate-400 pointer-events-none">
+                                    <i class="fa-solid fa-pen-clip"></i>
+                                </span>
+                                <input class="w-full bg-slate-50 border border-slate-200 rounded-xl py-3 pr-11 pl-4 text-sm text-slate-800 focus:outline-none focus:border-primary focus:bg-white transition-all" 
+                                       type="text" id="subject" placeholder="طلب إضافة قسم جديد / إبلاغ عن مشكلة" required>
+                            </div>
+                        </div>
+
+                        <!-- نص الرسالة -->
+                        <div class="space-y-2">
+                            <label class="block text-sm font-semibold text-slate-700" for="message">تفاصيل الرسالة</label>
+                            <textarea class="w-full bg-slate-50 border border-slate-200 rounded-xl py-3 px-4 text-sm text-slate-800 focus:outline-none focus:border-primary focus:bg-white transition-all min-h-[120px]" 
+                                      id="message" placeholder="اكتب استفسارك هنا بكل وضوح..." required></textarea>
+                        </div>
+
+                        <!-- زر الإرسال التفاعلي -->
+                        <div class="flex justify-end">
+                            <button class="btn-press w-full sm:w-auto px-8 py-3 bg-slate-950 text-white font-semibold rounded-xl text-sm hover:bg-slate-800 shadow-md transition-all flex items-center justify-center gap-2" type="submit">
+                                <i class="fa-regular fa-paper-plane"></i>
+                                <span>إرسال الرسالة</span>
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </section>
+
+    </main>
+    {/include}
